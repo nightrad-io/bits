@@ -344,7 +344,7 @@ def main():
         formatter_class=argparse.RawDescriptionHelpFormatter,
         epilog=__doc__,
     )
-    parser.add_argument("--key",default="your-secret",      required=True,
+    parser.add_argument("--key",default="your-secret",
                         help="pre-shared encryption key (must match server --key)")
     parser.add_argument("--front",    default="crates.io",
                         help="CONNECT target (must be on proxy allowlist)")
