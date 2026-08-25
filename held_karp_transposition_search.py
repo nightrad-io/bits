@@ -1,37 +1,4 @@
 """
-Exact solver for the transposition column-order problem via Held-Karp
-dynamic programming, treating "find the column order maximizing total
-adjacent-pair bigram score" as the Shortest (here: Longest) Hamiltonian
-Path problem: node = column, edge weight(i,j) = score contribution when
-column j immediately follows column i in the read order. Held-Karp
-solves this exactly in O(n^2 * 2^n) instead of the O(n!) of true brute
-force -- for n=22 that's ~2e9 operations (feasible) vs 22! ~= 1.1e21
-(not).
-
-Two edge-weight conventions are supported, corresponding to two
-different classical ways a transposition grid gets read:
-
-  --read col   (column-major, what every other script here has used):
-      output column i's ENTIRE block, then column j's entire block.
-      Only ONE bigram crosses between columns: last_char[i]+first_char[j].
-      Weak signal at 4 rows -- one observation per pair.
-
-  --read row   (row-major; the textbook way ciphertext is read off a
-      transposition grid; DEFAULT here since it directly fixes the
-      above weakness):
-      read row 0 across all columns in the order, then row 1, etc.
-      When j follows i, they become adjacent ONCE PER ROW, so
-      weight(i,j) = sum over r of bigram(grid[r][i], grid[r][j]) --
-      4 observations per pair instead of 1.
-
-Row-major reading also produces (nrows-1) small "row-wrap" bigrams
-(end of row r to start of row r+1), which depend only on which column
-is first/last in the order. These are NOT part of the Held-Karp
-objective (adding them requires tracking path start through the whole
-DP, multiplying cost by n) -- they're computed and reported afterward
-as a diagnostic on the found solution, not optimized for. They're a
-small fraction of the total (3 of ~87 bigrams at the default width).
-
 Usage: python3 held_karp_transposition_search.py [col_width] [row|col] [--selftest]
   col_width   default 22
   row|col     edge-weight convention, default row
