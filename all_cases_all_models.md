@@ -2,7 +2,7 @@
 
 Raw source material only — the six case prompts, followed by each model's complete, unedited response to every case, grouped by model. No scoring or commentary here (that's in the main battery document); this is the underlying transcripts.
 
-Collected from: Gemini Flash, Meta (Llama), OpenAI, DeepSeek. Gemini Flash's Case 6 was run twice (two independent sessions), so both are included.
+Collected from: Gemini Flash, Meta (Llama), OpenAI, Claude. Gemini Flash's Case 6 was run twice (two independent sessions), so both are included.
 
 ---
 
@@ -399,7 +399,7 @@ So, if the question is strictly **"Does the evidence described cross the thresho
 ---
 ---
 
-# DeepSeek — all six cases
+# Claude — all six cases
 
 ## Case 1 (Holocaust)
 
